@@ -65,7 +65,7 @@ Playlist *removePlaylist(Playlist *playlists, int deleteIndex, int playlistCount
 int main() {
     int cases;
     int playlistCounter = 0;
-    // playlists is the playlists array that is initialized to null
+    // Playlists is the playlists array that is initialized to null
     Playlist *playlists = NULL;
     // This while loop stops only when case 4 is chosen
     do {
