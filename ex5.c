@@ -89,6 +89,7 @@ int main() {
                 printf("Choose a playlist:\n");
                 printPlaylists(playlists, playlistCounter);
                 scanf("%d", &deleteIndex);
+                // if the user chose back to menu
                 if (deleteIndex == playlistCounter + 1) {
                     break;
                 }
@@ -140,10 +141,8 @@ Playlist *removePlaylist(Playlist *playlists, int deleteIndex, int playlistCount
     for (int i = deleteIndex; i < playlistCounter - 1; i++) {
         playlists[i] = playlists[i + 1];
     }
-    // decrease playlistCounter
-    playlistCounter--;
-    //then allocate the playlist array with the new playlistCounter times the size of playlist of memory size
-    playlists = realloc(playlists, playlistCounter * sizeof(Playlist));
+    //then allocate the playlist array with the new playlistCounter -1 times the size of playlist of memory size
+    playlists = realloc(playlists,(playlistCounter-1) * sizeof(Playlist));
     /* we check if the realloc failed but ignore when it fails
     after we deleted the last playlist(the pointer is supposed to point to null*/
     if (playlists == NULL && playlistCounter > 0) {
@@ -262,7 +261,7 @@ char *readAndAllocate() {
         tempString = temp;
     }
     // null-terminate the string and return it
-    tempString[stringSize] = '\0';
+    tempString[stringSize-1] = '\0';
     return tempString;
 }
 
@@ -424,8 +423,7 @@ void play(Playlist playlist) {
     for (int i = 0; i < playlist.songsNum; i++) {
         playlist.songs[i]->streams++;
         printf("Now playing %s:\n", playlist.songs[i]->title);
-        printf("%s \n", playlist.songs[i]->lyrics);
-        printf("\n");
+        printf("$ %s $\n", playlist.songs[i]->lyrics);
     }
 }
 
