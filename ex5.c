@@ -1,7 +1,7 @@
 /******************
 Name: Ariel Mizrahi
 ID:
-Assignment: ex2
+Assignment: ex5
 *******************/
 
 #include <stdio.h>
@@ -242,6 +242,10 @@ char *readAndAllocate() {
     while (1) {
         // read one char
         scanf("%c", &tempChar);
+        // in some inputs end of a line can be written as \r\n instead of just \n so we dont want to read \r
+        if (tempChar == '\r') {
+            continue;
+        }
         // Stop on newline
         if (tempChar == '\n') {
             break;
@@ -261,7 +265,7 @@ char *readAndAllocate() {
         tempString = temp;
     }
     // null-terminate the string and return it
-    tempString[stringSize-1] = '\0';
+    tempString[stringSize] = '\0';
     return tempString;
 }
 
